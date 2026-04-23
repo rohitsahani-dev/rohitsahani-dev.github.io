@@ -1,0 +1,26 @@
+<svg width="720" height="840" viewBox="0 0 720 840" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="840" rx="52" fill="#081220"/>
+  <rect x="24" y="24" width="672" height="792" rx="40" fill="url(#paint0_linear)" fill-opacity="0.14" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <circle cx="360" cy="285" r="128" fill="url(#paint1_linear)" fill-opacity="0.86"/>
+  <path d="M360 445C477.6 445 573 522.7 573 618.5V668H147V618.5C147 522.7 242.4 445 360 445Z" fill="url(#paint2_linear)" fill-opacity="0.86"/>
+  <g opacity="0.82">
+    <rect x="70" y="694" width="580" height="72" rx="20" fill="white" fill-opacity="0.06"/>
+    <text x="360" y="738" fill="#E6EEF9" font-family="Arial, sans-serif" font-size="32" font-weight="700" text-anchor="middle">Replace with your professional photo</text>
+  </g>
+  <text x="360" y="90" fill="#56D6FF" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="4" text-anchor="middle">PROFILE IMAGE PLACEHOLDER</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="72" y1="72" x2="664" y2="798" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="0.55" stop-color="#6D68FF"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="251" y1="175" x2="478" y2="390" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8BA8FF"/>
+      <stop offset="1" stop-color="#56D6FF"/>
+    </linearGradient>
+    <linearGradient id="paint2_linear" x1="187" y1="458" x2="514" y2="711" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F46E5"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+</svg>

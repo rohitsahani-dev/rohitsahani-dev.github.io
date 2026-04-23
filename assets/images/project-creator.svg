@@ -1,0 +1,23 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="750" rx="40" fill="#081220"/>
+  <rect x="52" y="52" width="1096" height="646" rx="32" fill="url(#paint0_linear)" fill-opacity="0.16" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <rect x="118" y="132" width="964" height="64" rx="22" fill="white" fill-opacity="0.08"/>
+  <rect x="118" y="236" width="278" height="376" rx="28" fill="white" fill-opacity="0.08"/>
+  <rect x="432" y="236" width="650" height="182" rx="28" fill="url(#paint1_linear)"/>
+  <rect x="432" y="442" width="202" height="170" rx="28" fill="white" fill-opacity="0.08"/>
+  <rect x="660" y="442" width="202" height="170" rx="28" fill="white" fill-opacity="0.08"/>
+  <rect x="888" y="442" width="194" height="170" rx="28" fill="white" fill-opacity="0.08"/>
+  <text x="118" y="102" fill="#56D6FF" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="3">CREATOR HUB</text>
+  <text x="118" y="654" fill="#E8F1FF" font-family="Arial, sans-serif" font-size="28" font-weight="700">Dashboard and content workflow concept</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="120" y1="112" x2="1068" y2="676" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E40AF"/>
+      <stop offset="0.5" stop-color="#5B4DF9"/>
+      <stop offset="1" stop-color="#14B8F0"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="450" y1="252" x2="1050" y2="410" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+</svg>

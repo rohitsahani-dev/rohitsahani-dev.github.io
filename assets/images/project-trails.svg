@@ -1,0 +1,22 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="750" rx="40" fill="#071120"/>
+  <rect x="50" y="50" width="1100" height="650" rx="34" fill="url(#paint0_linear)" fill-opacity="0.16" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <path d="M118 570C206 446 292 390 378 390C491 390 541 514 646 514C734 514 800 446 870 446C934 446 996 500 1082 618V632H118V570Z" fill="url(#paint1_linear)"/>
+  <circle cx="912" cy="204" r="84" fill="#56D6FF" fill-opacity="0.22"/>
+  <rect x="118" y="120" width="264" height="74" rx="24" fill="white" fill-opacity="0.08"/>
+  <rect x="118" y="236" width="964" height="118" rx="30" fill="white" fill-opacity="0.08"/>
+  <rect x="118" y="610" width="964" height="24" rx="12" fill="white" fill-opacity="0.08"/>
+  <text x="118" y="98" fill="#56D6FF" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="3">NEPAL TRAILS EXPLORER</text>
+  <text x="118" y="680" fill="#E8F1FF" font-family="Arial, sans-serif" font-size="28" font-weight="700">Travel discovery and destination planning concept</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="120" y1="118" x2="1082" y2="670" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2140A8"/>
+      <stop offset="0.5" stop-color="#614BFF"/>
+      <stop offset="1" stop-color="#14C6F6"/>
+    </linearGradient>
+    <linearGradient id="paint1_linear" x1="166" y1="420" x2="978" y2="646" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4263FF"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+</svg>

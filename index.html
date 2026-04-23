@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rohit Sahani | AI Model Developer & Full Stack Engineer</title>
+  <meta
+    name="description"
+    content="Rohit Sahani builds intelligent web applications with Python, JavaScript, AI model integration, and full-stack product delivery."
+  >
+  <meta
+    name="keywords"
+    content="Rohit Sahani, AI Model Developer, Full Stack Engineer, Python, JavaScript, Nepal, machine learning, web developer"
+  >
+  <meta name="theme-color" content="#0f172a">
+  <meta property="og:title" content="Rohit Sahani | AI Model Developer & Full Stack Engineer">
+  <meta
+    property="og:description"
+    content="AI-focused portfolio featuring full-stack product delivery, Python-based model integration, and modern web systems."
+  >
+  <meta property="og:image" content="assets/images/og-cover.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-loader" id="page-loader" aria-hidden="true">
+    <div class="page-loader__mark">RS</div>
+    <p>Loading portfolio</p>
+  </div>
+
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-background" aria-hidden="true">
+    <span class="page-background__orb page-background__orb--one"></span>
+    <span class="page-background__orb page-background__orb--two"></span>
+    <span class="page-background__grid"></span>
+  </div>
+
+  <header class="navbar">
+    <div class="container navbar__inner">
+      <a class="brand" href="#home" aria-label="Rohit Sahani home">
+        <span class="brand__mark">
+          <img src="assets/images/rohit-sahani-profile.jpeg" alt="Rohit Sahani portrait">
+        </span>
+        <span class="brand__text">
+          <strong>Rohit Sahani</strong>
+          <span>AI Model Developer</span>
+        </span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="Primary navigation">
+        <a class="nav-link" href="#home">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-cta" href="#contact">Let's Talk</a>
+      </nav>
+
+      <div class="navbar__actions">
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle color theme"
+          aria-pressed="false"
+        >
+          <span class="theme-toggle__track">
+            <span class="theme-toggle__thumb"></span>
+          </span>
+          <span class="theme-toggle__label">Theme</span>
+        </button>
+
+        <button
+          class="nav-toggle"
+          id="nav-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section hero" id="home">
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <p class="section-eyebrow">AI Model Developer & Full Stack Engineer</p>
+          <h1>I build intelligent, scalable web applications powered by AI.</h1>
+          <p class="hero__lede">
+            I design and develop full-stack applications that combine modern web technologies with
+            AI capabilities. From building machine learning models in Python to integrating them
+            into responsive web interfaces using JavaScript, I create systems that are fast,
+            scalable, and practical.
+          </p>
+          <p class="hero__location-line">
+            Based in Nepal, working on AI-driven solutions and modern web systems.
+          </p>
+
+          <div class="hero__typing">
+            <span class="hero__typing-label">Current focus</span>
+            <span id="typing-text" aria-live="polite"></span>
+          </div>
+
+          <div class="hero__actions">
+            <a class="button button--primary" href="#projects">View Projects</a>
+            <a class="button button--secondary" href="#contact">Contact Me</a>
+          </div>
+
+          <ul class="hero__contact-strip">
+            <li>
+              <span>Email</span>
+              <a href="mailto:rohit.sahani.dev@gmail.com">rohit.sahani.dev@gmail.com</a>
+            </li>
+            <li>
+              <span>Phone</span>
+              <a href="tel:9820695859">9820695859</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero__visual reveal">
+          <article class="profile-card">
+            <div class="profile-card__header">
+              <p class="profile-card__name">Rohit Sahani</p>
+              <h2 class="profile-card__role">AI Model Developer & Full Stack Engineer</h2>
+            </div>
+
+            <div class="profile-card__image-shell">
+              <img
+                class="profile-card__image"
+                src="assets/images/rohit-sahani-profile.jpeg"
+                alt="Portrait of Rohit Sahani"
+              >
+            </div>
+
+            <div class="profile-card__badge">Available for AI and full-stack project work</div>
+
+            <div class="profile-card__meta">
+              <div class="profile-card__meta-item">
+                <span class="profile-card__meta-label">Location</span>
+                <strong>Nepal</strong>
+              </div>
+              <div class="profile-card__meta-item">
+                <span class="profile-card__meta-label">Build focus</span>
+                <p>Python models, AI integration, and web systems that are usable in production.</p>
+              </div>
+            </div>
+
+            <ul class="profile-card__chips" aria-label="Primary skills">
+              <li>Python</li>
+              <li>AI Integration</li>
+              <li>Web Systems</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__header reveal">
+          <p class="section-eyebrow">About</p>
+          <h2>Building practical AI products with full-stack delivery.</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-copy reveal">
+            <p>
+              I am an AI-focused developer with a strong foundation in full-stack web development.
+              I work with Python for building intelligent systems and use JavaScript, HTML, and CSS
+              to create responsive user interfaces. I aim to build applications that are not just
+              functional, but smart and efficient.
+            </p>
+            <p>
+              My work is centered on connecting model logic with interfaces people can actually use.
+              That includes API design, data handling, frontend structure, and deployment-ready web
+              systems that feel clean and reliable.
+            </p>
+          </div>
+
+          <div class="about-panels reveal">
+            <article class="info-panel">
+              <h3>AI model development</h3>
+              <p>Python-based workflows for building, testing, and exposing intelligent behavior.</p>
+            </article>
+            <article class="info-panel">
+              <h3>Web integration</h3>
+              <p>REST APIs and responsive interfaces that connect model logic to real user flows.</p>
+            </article>
+            <article class="info-panel">
+              <h3>Full product delivery</h3>
+              <p>From data handling to frontend polish, I build complete systems with clear structure.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__header reveal">
+          <p class="section-eyebrow">Skills</p>
+          <h2>Core technologies used to build intelligent, usable products.</h2>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card reveal">
+            <h3>Frontend</h3>
+            <ul>
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>JavaScript (ES6+)</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <h3>Backend</h3>
+            <ul>
+              <li>Python</li>
+              <li>Java</li>
+              <li>Server-side logic and API handling</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <h3>AI / Machine Learning</h3>
+            <ul>
+              <li>Model development</li>
+              <li>Data handling and preprocessing</li>
+              <li>AI integration into web apps</li>
+            </ul>
+          </article>
+
+          <article class="skill-card reveal">
+            <h3>Tools</h3>
+            <ul>
+              <li>Git & GitHub</li>
+              <li>REST APIs</li>
+              <li>JSON and structured data workflows</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section__header reveal">
+          <p class="section-eyebrow">Projects</p>
+          <h2>AI-powered products designed around real usage and clear outcomes.</h2>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img src="assets/images/project-atlas.svg" alt="Support Intelligence Platform preview">
+            </div>
+            <div class="project-card__content">
+              <h3>Support Intelligence Platform</h3>
+              <p class="project-card__problem">
+                Helps support teams sort and respond to incoming requests with more consistency.
+              </p>
+              <p>
+                This project uses a Python-based model to review user input, classify request types,
+                and pass structured results to a web interface built with JavaScript. It turns raw
+                queries into usable support workflows.
+              </p>
+              <ul class="project-card__stack">
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>REST API</li>
+                <li>HTML/CSS</li>
+              </ul>
+              <p class="project-card__outcome">
+                Outcome: clearer triage flow, faster response handling, and a practical AI layer for
+                web-based operations.
+              </p>
+              <div class="project-card__actions">
+                <a
+                  class="button button--secondary"
+                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20demo%20for%20Support%20Intelligence%20Platform"
+                >
+                  Request Demo
+                </a>
+                <a
+                  class="button button--ghost"
+                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20repository%20details%20for%20Support%20Intelligence%20Platform"
+                >
+                  Request Repository
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img src="assets/images/project-creator.svg" alt="Content Response Assistant preview">
+            </div>
+            <div class="project-card__content">
+              <h3>Content Response Assistant</h3>
+              <p class="project-card__problem">
+                Supports creators and teams that need faster response generation across channels.
+              </p>
+              <p>
+                This system combines Python-based text handling with a frontend workflow that lets
+                users submit prompts, review generated responses, and manage output inside a clean
+                interface. Backend logic controls formatting and response structure.
+              </p>
+              <ul class="project-card__stack">
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>JSON</li>
+                <li>CSS3</li>
+              </ul>
+              <p class="project-card__outcome">
+                Outcome: faster content operations, better consistency, and a usable AI workflow for
+                day-to-day content tasks.
+              </p>
+              <div class="project-card__actions">
+                <a
+                  class="button button--secondary"
+                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20demo%20for%20Content%20Response%20Assistant"
+                >
+                  Request Demo
+                </a>
+                <a
+                  class="button button--ghost"
+                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20repository%20details%20for%20Content%20Response%20Assistant"
+                >
+                  Request Repository
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img src="assets/images/project-trails.svg" alt="Workflow Analytics Dashboard preview">
+            </div>
+            <div class="project-card__content">
+              <h3>Workflow Analytics Dashboard</h3>
+              <p class="project-card__problem">
+                Gives teams a clearer view of data movement, process health, and decision points.
+              </p>
+              <p>
+                This dashboard connects processed backend data with a responsive frontend so users
+                can track workflow status, review structured metrics, and inspect AI-assisted outputs
+                in one place. It is designed for real monitoring rather than static reporting.
+              </p>
+              <ul class="project-card__stack">
+                <li>Python</li>
+                <li>Java</li>
+                <li>REST API</li>
+                <li>JavaScript</li>
+              </ul>
+              <p class="project-card__outcome">
+                Outcome: better visibility across full-stack processes and a clearer path from raw
+                data to useful interface decisions.
+              </p>
+              <div class="project-card__actions">
+                <a
+                  class="button button--secondary"
+                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20demo%20for%20Workflow%20Analytics%20Dashboard"
+                >
+                  Request Demo
+                </a>
+                <a
+                  class="button button--ghost"
+                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20repository%20details%20for%20Workflow%20Analytics%20Dashboard"
+                >
+                  Request Repository
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section__header reveal">
+          <p class="section-eyebrow">Experience</p>
+          <h2>A practical process from model logic to finished interface.</h2>
+        </div>
+
+        <div class="timeline reveal">
+          <article class="timeline__item">
+            <span class="timeline__marker">01</span>
+            <div>
+              <h3>Understand the workflow</h3>
+              <p>Start with the problem, the user flow, and the decisions the system needs to support.</p>
+            </div>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__marker">02</span>
+            <div>
+              <h3>Build the model and backend structure</h3>
+              <p>Use Python, data handling, and API logic to create a system that is reliable and usable.</p>
+            </div>
+          </article>
+          <article class="timeline__item">
+            <span class="timeline__marker">03</span>
+            <div>
+              <h3>Deliver the interface and integration</h3>
+              <p>Connect the logic to a responsive frontend so the full product works as one system.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="section-eyebrow">Contact</p>
+          <h2>Interested in building AI-powered applications or scalable web systems? Let's work together.</h2>
+          <p>
+            If you need help turning an idea into a working product, I can support the model logic,
+            the API layer, and the frontend delivery needed to make it practical.
+          </p>
+
+          <div class="contact-details">
+            <a href="mailto:rohit.sahani.dev@gmail.com">rohit.sahani.dev@gmail.com</a>
+            <a href="tel:9820695859">9820695859</a>
+            <span>Nepal</span>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form" novalidate>
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+          </label>
+
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" placeholder="your@email.com" autocomplete="email" required>
+          </label>
+
+          <label>
+            <span>Message</span>
+            <textarea
+              name="message"
+              rows="5"
+              placeholder="Tell me about your AI or web project."
+              required
+            ></textarea>
+          </label>
+
+          <button class="button button--primary" type="submit">Send Message</button>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; <span id="current-year"></span> Rohit Sahani. AI Model Developer & Full Stack Engineer.</p>
+      <div class="footer__links">
+        <a href="mailto:rohit.sahani.dev@gmail.com">Email</a>
+        <a href="tel:9820695859">Phone</a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+    Top
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
