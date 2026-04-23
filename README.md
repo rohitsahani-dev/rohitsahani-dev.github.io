@@ -1,67 +1,70 @@
-# 💼 Rohit Sahani – Portfolio Website
+# 🤖 Rohit Sahani – AI Model Developer Portfolio
 
-A modern, responsive personal portfolio website built using **HTML, CSS, and JavaScript**.  
-It showcases my skills, projects, and contact information in a clean and professional way.
+<p align="center">
+  <a href="https://rohitsahani-dev.github.io/#home">
+    <img src="assets/screenshots/preview.png" alt="Portfolio Preview" width="800"/>
+  </a>
+</p>
+
+<p align="center">
+  <b>AI Model Developer • Frontend Developer • Problem Solver</b>
+</p>
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Portfolio
 
-👉 https://rohitsahani-dev.github.io/#home
+<p>
+  👉 <a href="https://rohitsahani-dev.github.io/#home">Visit My Portfolio Website</a>
+</p>
 
 ---
 
-## 📌 About This Project
+## 🧠 About This Project
 
-This portfolio is designed to represent me as a developer in a structured and professional format.
+This is my personal portfolio website built to represent my work as an **AI Model Developer and Web Developer**.
 
-It focuses on:
-- Strong first impression
-- Clean UI/UX design
-- Fast performance
-- Easy navigation
+It is designed to:
+- Showcase my technical skills
+- Highlight development projects
+- Present my learning journey in AI and software development
+- Provide a clean way to connect with me
 
-This is my digital identity as a developer.
+---
+
+## ⚙️ Tech Stack
+
+- HTML5
+- CSS3
+- JavaScript (Vanilla)
+- Git & GitHub
+- GitHub Pages (Deployment)
 
 ---
 
 ## ✨ Features
 
-- Fully responsive design (mobile, tablet, desktop)
-- Smooth scrolling navigation
-- Modern UI layout
-- Home, About, Skills, Projects, Contact sections
-- Project showcase system
-- Contact section for communication
-- Lightweight and fast loading
-- GitHub Pages deployment ready
-
----
-
-## 🛠️ Tech Stack
-
-- HTML5
-- CSS3
-- JavaScript (Vanilla JS)
-- Git & GitHub Pages
+<ul>
+  <li>Responsive design for all devices</li>
+  <li>Clean and minimal UI/UX</li>
+  <li>Smooth navigation between sections</li>
+  <li>Projects showcase section</li>
+  <li>Skills representation section</li>
+  <li>Contact section for communication</li>
+  <li>Fast loading and lightweight structure</li>
+</ul>
 
 ---
 
 ## 📁 Project Structure
 
-```text
-Portfolio/
-|-- assets/
-|   |-- icons/
-|   |   `-- favicon.svg
-|   `-- images/
-|       |-- og-cover.svg
-|       |-- profile-placeholder.svg
-|       |-- project-atlas.svg
-|       |-- project-creator.svg
-|       `-- project-trails.svg
-|-- index.html
-|-- script.js
-|-- style.css
-`-- README.md
-```
+```bash
+portfolio/
+│── index.html
+│── style.css
+│── script.js
+│
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── screenshots/
