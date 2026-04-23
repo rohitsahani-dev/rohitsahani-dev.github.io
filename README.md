@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://rohitsahani-dev.github.io/#home">
-    <img src="[assets/screenshots/preview.png](https://github.com/rohitsahani-dev/rohitsahani-dev.github.io/blob/main/assets/images/Preview_Website.png?raw=true)" alt="Portfolio Preview" width="800"/>
+    <img src="https://github.com/rohitsahani-dev/rohitsahani-dev.github.io/blob/main/assets/images/Preview_Website.png?raw=true" alt="Portfolio Preview" width="800"/>
   </a>
 </p>
 
