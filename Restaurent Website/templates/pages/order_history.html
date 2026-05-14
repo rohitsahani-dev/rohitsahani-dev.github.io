@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+    <div class="container">
+        <span class="eyebrow">Order History</span>
+        <h1>Your previous restaurant orders.</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container admin-table-card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                    <th>Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>#{{ order.id }}</td>
+                        <td>{{ order.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                        <td><span class="status-badge status-{{ order.status|lower }}">{{ order.status }}</span></td>
+                        <td>${{ '%.2f'|format(order.total_price|float) }}</td>
+                        <td>
+                            <ul class="order-item-list">
+                                {% for item in order.items %}
+                                    <li>{{ item.menu_item.name if item.menu_item else 'Item removed' }} x {{ item.quantity }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">No orders placed yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

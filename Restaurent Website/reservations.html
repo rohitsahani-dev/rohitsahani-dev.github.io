@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bella Italia | Reservations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="reservations">
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Primary">
+            <a class="brand" href="index.html">
+                <span class="brand-mark"><i class="fas fa-utensils"></i></span>
+                <span class="brand-text">La Bella Italia</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="about.html" data-page="about">About</a></li>
+                <li><a href="menu.html" data-page="menu">Menu</a></li>
+                <li><a href="gallery.html" data-page="gallery">Gallery</a></li>
+                <li><a href="reservations.html" data-page="reservations">Reservations</a></li>
+                <li><a href="private-dining.html" data-page="events">Private Dining</a></li>
+                <li><a href="contact.html" data-page="contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a class="button-primary" href="reservations.html">Book Table</a>
+                <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-grid">
+                    <div class="page-hero-copy">
+                        <span class="eyebrow">Reservations</span>
+                        <h1>A dedicated booking page for a calmer guest flow</h1>
+                        <p>Moving reservations onto their own page creates more space for the form, clearer field grouping, and a more professional booking experience.</p>
+                    </div>
+                    <div class="page-hero-visual">
+                        <div class="visual-panel">
+                            <div class="mini-card"><strong>Quick Request</strong><span>Enter date, time, party size, and occasion.</span></div>
+                            <div class="mini-card"><strong>Private Events</strong><span>Need a larger setup? We guide guests to the private dining page.</span></div>
+                            <div class="mini-card"><strong>Responsive Layout</strong><span>The form keeps its structure on desktop and mobile.</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="steps-grid">
+                    <article class="step-card">
+                        <div class="icon-box"><i class="fas fa-calendar-day"></i></div>
+                        <h3>Choose a Date</h3>
+                        <p>Select the evening or lunch service that suits your visit.</p>
+                    </article>
+                    <article class="step-card">
+                        <div class="icon-box"><i class="fas fa-user-group"></i></div>
+                        <h3>Add Guest Details</h3>
+                        <p>Tell us how many guests are joining and any special occasion notes.</p>
+                    </article>
+                    <article class="step-card">
+                        <div class="icon-box"><i class="fas fa-bell-concierge"></i></div>
+                        <h3>Receive Confirmation</h3>
+                        <p>Our team follows up and prepares the table for your arrival.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>Reservation Details</h3>
+                        <p>Use the form to send a booking request. For parties larger than eight, please use our private dining page.</p>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <strong>Phone Reservations</strong>
+                                    <p>+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-clock"></i></div>
+                                <div>
+                                    <strong>Booking Hours</strong>
+                                    <p>Mon to Sat 11 AM - 11 PM, Sun 12 PM - 10 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="form-card" data-demo-form data-success="Thank you. Your reservation request has been sent to La Bella Italia.">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="reserve-name">Full Name</label>
+                                <input id="reserve-name" type="text" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reserve-phone">Phone</label>
+                                <input id="reserve-phone" type="tel" placeholder="+1 (555) 123-4567" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reserve-email">Email</label>
+                                <input id="reserve-email" type="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reserve-guests">Guests</label>
+                                <select id="reserve-guests" required>
+                                    <option value="">Select guests</option>
+                                    <option>2 Guests</option>
+                                    <option>4 Guests</option>
+                                    <option>6 Guests</option>
+                                    <option>8 Guests</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reserve-date">Date</label>
+                                <input id="reserve-date" type="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reserve-time">Time</label>
+                                <input id="reserve-time" type="time" required>
+                            </div>
+                            <div class="form-group full">
+                                <label for="reserve-notes">Special Notes</label>
+                                <textarea id="reserve-notes" placeholder="Anniversary, dietary note, or seating preference"></textarea>
+                            </div>
+                        </div>
+                        <div class="page-hero-actions">
+                            <button class="button-primary" type="submit">Send Reservation Request</button>
+                            <a class="button-light" href="private-dining.html">Need Private Dining?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-panel">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <h3>La Bella Italia</h3>
+                        <p>A cleaner booking journey with a page that focuses on reservations instead of hiding the form in a modal.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Explore</h4>
+                        <ul class="footer-links">
+                            <li><a href="menu.html">Menu</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="about.html">About</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Events</h4>
+                        <ul class="footer-links">
+                            <li><a href="private-dining.html">Private Dining</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="index.html">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Call Us</h4>
+                        <ul class="footer-links">
+                            <li>+1 (555) 123-4567</li>
+                            <li>hello@labellaitalia.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">&copy; <span data-year></span> La Bella Italia. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="assets/js/site.js"></script>
+</body>
+</html>

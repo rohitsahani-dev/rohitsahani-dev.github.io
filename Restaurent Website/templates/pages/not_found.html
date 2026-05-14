@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container narrow-container">
+        <div class="content-card" style="text-align:center;">
+            <span class="eyebrow">Oops</span>
+            <h1>We could not find that page.</h1>
+            <p>The page may have moved or the address may be incorrect. You can return to the homepage or continue browsing the menu.</p>
+            <div class="hero-actions" style="justify-content:center;">
+                <a class="button button-primary" href="{{ url_for('pages.home') }}">Go Home</a>
+                <a class="button button-secondary" href="{{ url_for('pages.menu') }}">View Menu</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

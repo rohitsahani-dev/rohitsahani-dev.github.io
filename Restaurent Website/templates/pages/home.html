@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">Restaurant Management Platform</span>
+            <h1>Modern dining, ordering, and operations in one place.</h1>
+            <p>La Bella Italia combines customer ordering, secure authentication, reservation management, and a role-based admin panel with a polished responsive interface.</p>
+            <div class="hero-actions">
+                <a class="button button-primary" href="{{ url_for('pages.menu') }}">Order Food</a>
+                <a class="button button-secondary" href="{{ url_for('pages.reservations') }}">Book a Table</a>
+            </div>
+        </div>
+        <div class="hero-card-grid">
+            <article class="glass-card">
+                <strong>{{ featured_items|length }}</strong>
+                <span>Featured dishes on the live menu</span>
+            </article>
+            <article class="glass-card">
+                <strong>{{ categories|length }}</strong>
+                <span>Dynamic categories from the database</span>
+            </article>
+            <article class="glass-card">
+                <strong>2 Roles</strong>
+                <span>Admin and customer access controls</span>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Customer Experience</span>
+            <h2>Everything guests expect from a modern restaurant app.</h2>
+        </div>
+        <div class="feature-grid">
+            <article class="feature-card"><i class="fas fa-cart-shopping"></i><h3>Dynamic ordering</h3><p>Menu browsing, client-side cart, checkout, and order history tied to a real user account.</p></article>
+            <article class="feature-card"><i class="fas fa-table"></i><h3>Reservations</h3><p>Fast booking flow with validation, persistence, and reservation management support.</p></article>
+            <article class="feature-card"><i class="fas fa-shield-alt"></i><h3>Secure auth</h3><p>Session-based login with bcrypt password hashing and role-aware route protection.</p></article>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Featured Menu</span>
+            <h2>Fresh selections pulled from your database.</h2>
+        </div>
+        <div class="menu-preview-grid">
+            {% for item in featured_items %}
+            <article class="menu-preview-card">
+                <div class="menu-preview-image" style="background-image: linear-gradient(135deg, rgba(15,17,24,0.18), rgba(15,17,24,0.5)), url('{{ item.image_url if item.image_url else 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80' }}');"></div>
+                <div class="menu-preview-body">
+                    <div class="menu-card-topline">
+                        <h3>{{ item.name }}</h3>
+                        <span>${{ '%.2f'|format(item.price|float) }}</span>
+                    </div>
+                    <p>{{ item.description }}</p>
+                    <span class="menu-pill">{{ item.category.name }}</span>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

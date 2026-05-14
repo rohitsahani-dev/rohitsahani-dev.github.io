@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bella Italia | Contact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="contact">
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Primary">
+            <a class="brand" href="index.html">
+                <span class="brand-mark"><i class="fas fa-utensils"></i></span>
+                <span class="brand-text">La Bella Italia</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" data-page="home">Home</a></li>
+                <li><a href="about.html" data-page="about">About</a></li>
+                <li><a href="menu.html" data-page="menu">Menu</a></li>
+                <li><a href="gallery.html" data-page="gallery">Gallery</a></li>
+                <li><a href="reservations.html" data-page="reservations">Reservations</a></li>
+                <li><a href="private-dining.html" data-page="events">Private Dining</a></li>
+                <li><a href="contact.html" data-page="contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a class="button-primary" href="reservations.html">Book Table</a>
+                <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <div class="page-hero-grid">
+                    <div class="page-hero-copy">
+                        <span class="eyebrow">Contact</span>
+                        <h1>Everything guests need to reach us in one place</h1>
+                        <p>A separate contact page keeps location details, contact channels, and FAQs tidy instead of forcing them into a crowded footer-only experience.</p>
+                    </div>
+                    <div class="page-hero-visual">
+                        <div class="visual-panel">
+                            <div class="mini-card"><strong>Address</strong><span>123 Via Italia St, New York, NY 10001</span></div>
+                            <div class="mini-card"><strong>Phone</strong><span>+1 (555) 123-4567</span></div>
+                            <div class="mini-card"><strong>Email</strong><span>hello@labellaitalia.com</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3>Visit or Call</h3>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-location-dot"></i></div>
+                                <div>
+                                    <strong>Address</strong>
+                                    <p>123 Via Italia Street, Downtown, New York, NY 10001</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-phone"></i></div>
+                                <div>
+                                    <strong>Phone</strong>
+                                    <p>+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-envelope"></i></div>
+                                <div>
+                                    <strong>Email</strong>
+                                    <p>hello@labellaitalia.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="icon-box"><i class="fas fa-clock"></i></div>
+                                <div>
+                                    <strong>Hours</strong>
+                                    <p>Monday to Saturday: 11 AM - 11 PM<br>Sunday: 12 PM - 10 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="form-card" data-demo-form data-success="Thank you. Your message has been sent to La Bella Italia.">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="contact-name">Name</label>
+                                <input id="contact-name" type="text" placeholder="Your full name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                <input id="contact-email" type="email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-phone">Phone</label>
+                                <input id="contact-phone" type="tel" placeholder="+1 (555) 123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-topic">Topic</label>
+                                <select id="contact-topic" required>
+                                    <option value="">Choose a topic</option>
+                                    <option>General Inquiry</option>
+                                    <option>Private Dining</option>
+                                    <option>Reservation Help</option>
+                                    <option>Catering</option>
+                                </select>
+                            </div>
+                            <div class="form-group full">
+                                <label for="contact-message">Message</label>
+                                <textarea id="contact-message" placeholder="Tell us how we can help" required></textarea>
+                            </div>
+                        </div>
+                        <button class="button-primary" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="eyebrow">FAQ</span>
+                    <h2>Helpful answers before you visit</h2>
+                </div>
+                <div class="faq-grid">
+                    <article class="faq-item">
+                        <h3>Do you accept walk-ins?</h3>
+                        <p>Yes, but reservations are recommended for evenings and weekends.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Do you offer vegetarian options?</h3>
+                        <p>Yes. Our menu includes multiple vegetarian dishes and flexible preparations.</p>
+                    </article>
+                    <article class="faq-item">
+                        <h3>Can I host a private event?</h3>
+                        <p>Absolutely. Visit the private dining page or contact us directly for custom arrangements.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-panel">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <h3>La Bella Italia</h3>
+                        <p>Contact details, forms, and answers are now grouped in one clear destination page.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Browse</h4>
+                        <ul class="footer-links">
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="menu.html">Menu</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Visit</h4>
+                        <ul class="footer-links">
+                            <li><a href="reservations.html">Reservations</a></li>
+                            <li><a href="private-dining.html">Private Dining</a></li>
+                            <li><a href="index.html">Home</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Reach Us</h4>
+                        <ul class="footer-links">
+                            <li>hello@labellaitalia.com</li>
+                            <li>+1 (555) 123-4567</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">&copy; <span data-year></span> La Bella Italia. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top"><i class="fas fa-chevron-up"></i></button>
+    <script src="assets/js/site.js"></script>
+</body>
+</html>

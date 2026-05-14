@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container admin-layout">
+        <aside class="admin-sidebar">
+            <a href="{{ url_for('pages.admin_dashboard') }}" class="admin-link">Overview</a>
+            <a href="{{ url_for('pages.admin_menu') }}" class="admin-link active">Menu Items</a>
+            <a href="{{ url_for('pages.admin_categories') }}" class="admin-link">Categories</a>
+            <a href="{{ url_for('pages.admin_orders') }}" class="admin-link">Orders</a>
+            <a href="{{ url_for('pages.admin_users') }}" class="admin-link">Users</a>
+            <a href="{{ url_for('pages.admin_reservations') }}" class="admin-link">Reservations</a>
+        </aside>
+        <div class="admin-content">
+            <form id="menu-item-form" class="content-card form-card" enctype="multipart/form-data">
+                <h2>Add Menu Item</h2>
+                <div class="form-grid two-column">
+                    <div class="form-field"><label>Name</label><input name="name" required></div>
+                    <div class="form-field"><label>Price</label><input name="price" type="number" step="0.01" min="0" required></div>
+                    <div class="form-field"><label>Category</label><select name="category_id" required>{% for category in categories %}<option value="{{ category.id }}">{{ category.name }}</option>{% endfor %}</select></div>
+                    <div class="form-field"><label>Image</label><input name="image" type="file" accept=".png,.jpg,.jpeg,.webp"></div>
+                    <div class="form-field full-width"><label>Description</label><textarea name="description" rows="4" required></textarea></div>
+                    <div class="form-field"><label><input type="checkbox" name="is_available" checked> Available</label></div>
+                </div>
+                <button class="button button-primary" type="submit">Create Item</button>
+            </form>
+            <div class="admin-table-card">
+                <div class="table-header">
+                    <h2>Menu Items</h2>
+                    <form method="get" class="inline-search">
+                        <input type="search" name="search" placeholder="Search..." value="{{ search }}">
+                        <button class="button button-secondary" type="submit">Filter</button>
+                    </form>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Name</th><th>Category</th><th>Price</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for item in pagination.items %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.category.name }}</td>
+                                <td>${{ '%.2f'|format(item.price|float) }}</td>
+                                <td>{{ 'Available' if item.is_available else 'Hidden' }}</td>
+                                <td class="table-actions">
+                                    <button class="button button-secondary admin-edit-menu"
+                                            type="button"
+                                            data-item='{{ item.to_dict()|tojson|safe }}'>Edit</button>
+                                    <button class="button button-danger admin-delete-menu" type="button" data-id="{{ item.id }}">Delete</button>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="5">No menu items found.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% include 'partials/pagination.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

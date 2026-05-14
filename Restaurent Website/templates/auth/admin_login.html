@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section auth-shell">
+    <div class="container narrow-container">
+        <form id="admin-login-form" class="content-card form-card">
+            <span class="eyebrow">Admin Access</span>
+            <h1>Secure admin login.</h1>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="admin-email">Email</label>
+                    <input id="admin-email" name="email" type="email" required>
+                </div>
+                <div class="form-field">
+                    <label for="admin-password">Password</label>
+                    <input id="admin-password" name="password" type="password" required>
+                </div>
+            </div>
+            <button class="button button-primary" type="submit">Enter Dashboard</button>
+        </form>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container admin-layout">
+        <aside class="admin-sidebar">
+            <a href="{{ url_for('pages.admin_dashboard') }}" class="admin-link">Overview</a>
+            <a href="{{ url_for('pages.admin_menu') }}" class="admin-link">Menu Items</a>
+            <a href="{{ url_for('pages.admin_categories') }}" class="admin-link active">Categories</a>
+            <a href="{{ url_for('pages.admin_orders') }}" class="admin-link">Orders</a>
+            <a href="{{ url_for('pages.admin_users') }}" class="admin-link">Users</a>
+            <a href="{{ url_for('pages.admin_reservations') }}" class="admin-link">Reservations</a>
+        </aside>
+        <div class="admin-content">
+            <form id="category-form" class="content-card form-card">
+                <h2>Add Category</h2>
+                <div class="form-grid">
+                    <div class="form-field"><label>Name</label><input name="name" required></div>
+                </div>
+                <button class="button button-primary" type="submit">Create Category</button>
+            </form>
+            <div class="admin-table-card">
+                <table class="data-table">
+                    <thead><tr><th>Name</th><th>Items</th><th>Actions</th></tr></thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{ category.name }}</td>
+                                <td>{{ category.menu_items.count() }}</td>
+                                <td class="table-actions">
+                                    <button class="button button-secondary admin-edit-category" type="button" data-id="{{ category.id }}" data-name="{{ category.name }}">Rename</button>
+                                    <button class="button button-danger admin-delete-category" type="button" data-id="{{ category.id }}">Delete</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

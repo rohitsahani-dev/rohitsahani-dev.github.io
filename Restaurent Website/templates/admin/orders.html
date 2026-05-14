@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section">
+    <div class="container admin-layout">
+        <aside class="admin-sidebar">
+            <a href="{{ url_for('pages.admin_dashboard') }}" class="admin-link">Overview</a>
+            <a href="{{ url_for('pages.admin_menu') }}" class="admin-link">Menu Items</a>
+            <a href="{{ url_for('pages.admin_categories') }}" class="admin-link">Categories</a>
+            <a href="{{ url_for('pages.admin_orders') }}" class="admin-link active">Orders</a>
+            <a href="{{ url_for('pages.admin_users') }}" class="admin-link">Users</a>
+            <a href="{{ url_for('pages.admin_reservations') }}" class="admin-link">Reservations</a>
+        </aside>
+        <div class="admin-content">
+            <div class="admin-table-card">
+                <div class="table-header">
+                    <h2>Orders</h2>
+                    <form method="get" class="inline-search">
+                        <select name="status">
+                            <option value="">All statuses</option>
+                            {% for status in ['Pending', 'Preparing', 'Delivered'] %}
+                                <option value="{{ status }}" {% if selected_status == status %}selected{% endif %}>{{ status }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="button button-secondary" type="submit">Apply</button>
+                    </form>
+                </div>
+                <table class="data-table">
+                    <thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th><th>Update</th></tr></thead>
+                    <tbody>
+                        {% for order in pagination.items %}
+                            <tr>
+                                <td>#{{ order.id }}</td>
+                                <td>{{ order.user.name }}</td>
+                                <td>${{ '%.2f'|format(order.total_price|float) }}</td>
+                                <td><span class="status-badge status-{{ order.status|lower }}">{{ order.status }}</span></td>
+                                <td>
+                                    <div class="status-control">
+                                        <select class="admin-order-status" data-order-id="{{ order.id }}">
+                                            {% for status in ['Pending', 'Preparing', 'Delivered'] %}
+                                                <option value="{{ status }}" {% if order.status == status %}selected{% endif %}>{{ status }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button class="button button-secondary admin-update-order" type="button" data-order-id="{{ order.id }}">Save</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="5">No orders found.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% include 'partials/pagination.html' %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

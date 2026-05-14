@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container page-hero-grid">
+        <div>
+            <span class="eyebrow">Menu</span>
+            <h1>Browse, filter, and build your cart in real time.</h1>
+            <p>The menu is rendered from the cloud database and enhanced with client-side search, category filters, quantity controls, and a persistent cart.</p>
+        </div>
+        <aside class="cart-summary-card">
+            <h3>Your Cart</h3>
+            <div id="cart-summary-items" class="cart-summary-items"></div>
+            <div class="summary-line"><span>Total</span><strong id="cart-summary-total">$0.00</strong></div>
+            {% if current_user.is_authenticated %}
+                <a class="button button-primary cart-cta" href="{{ url_for('pages.checkout') }}">Go to Checkout</a>
+            {% else %}
+                <a class="button button-primary cart-cta" href="{{ url_for('auth.login_page') }}">Login to Checkout</a>
+            {% endif %}
+        </aside>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="menu-toolbar">
+            <input id="menu-search" class="search-input" type="search" placeholder="Search dishes...">
+            <div class="category-filter-bar">
+                <button class="filter-chip active" type="button" data-category-filter="all">All</button>
+                {% for category in categories %}
+                    <button class="filter-chip" type="button" data-category-filter="{{ category.id }}">{{ category.name }}</button>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="menu-list-grid" id="menu-grid">
+            {% for item in menu_items %}
+                <article class="menu-item-card" data-menu-card data-name="{{ item.name|lower }}" data-category="{{ item.category_id }}">
+                    <div class="menu-item-image" style="background-image: linear-gradient(135deg, rgba(15,17,24,0.18), rgba(15,17,24,0.5)), url('{{ item.image_url if item.image_url else 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80' }}');"></div>
+                    <div class="menu-item-body">
+                        <div class="menu-card-topline">
+                            <h3>{{ item.name }}</h3>
+                            <strong>${{ '%.2f'|format(item.price|float) }}</strong>
+                        </div>
+                        <p>{{ item.description }}</p>
+                        <div class="menu-card-meta">
+                            <span class="menu-pill">{{ item.category.name }}</span>
+                            {% if not item.is_available %}<span class="menu-pill muted">Unavailable</span>{% endif %}
+                        </div>
+                        <div class="cart-action-row">
+                            <div class="quantity-control" data-quantity-control>
+                                <button type="button" data-qty-down>-</button>
+                                <input type="number" min="1" max="10" value="1" data-qty-input>
+                                <button type="button" data-qty-up>+</button>
+                            </div>
+                            <button
+                                type="button"
+                                class="button button-primary"
+                                data-add-to-cart
+                                data-item-id="{{ item.id }}"
+                                data-item-name="{{ item.name }}"
+                                data-item-price="{{ item.price|float }}"
+                                data-item-image="{{ item.image_url or '' }}"
+                                {% if not item.is_available %}disabled{% endif %}
+                            >
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,34 @@
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <h3>La Bella Italia</h3>
+            <p>Cloud-ready restaurant ordering and management, built with Flask, REST APIs, secure sessions, and a responsive UI.</p>
+        </div>
+        <div>
+            <h4>Customer</h4>
+            <ul>
+                <li><a href="{{ url_for('pages.menu') }}">Browse Menu</a></li>
+                <li><a href="{{ url_for('pages.reservations') }}">Reserve a Table</a></li>
+                <li><a href="{{ url_for('pages.contact') }}">Contact</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Admin</h4>
+            <ul>
+                <li><a href="{{ url_for('auth.admin_login_page') }}">Admin Login</a></li>
+                <li><a href="{{ url_for('pages.admin_dashboard') }}">Dashboard</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Visit</h4>
+            <ul>
+                <li>123 Via Italia Street</li>
+                <li>Open Daily 11:00 - 23:00</li>
+                <li>hello@labellaitalia.com</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <span>&copy; {{ current_year }} La Bella Italia. All rights reserved.</span>
+    </div>
+</footer>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact">
+    <div class="container">
+        <span class="eyebrow">Checkout</span>
+        <h1>Review your order and place it securely.</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container checkout-grid">
+        <div class="content-card">
+            <h2>Account</h2>
+            <div class="account-summary">
+                <div><span>Name</span><strong>{{ current_user.name }}</strong></div>
+                <div><span>Email</span><strong>{{ current_user.email }}</strong></div>
+            </div>
+            <h2 style="margin-top: 2rem;">Order Items</h2>
+            <div id="checkout-cart-items" class="checkout-item-list"></div>
+        </div>
+        <aside class="content-card sticky-card">
+            <h2>Summary</h2>
+            <div class="summary-line"><span>Items</span><strong id="checkout-item-count">0</strong></div>
+            <div class="summary-line"><span>Total</span><strong id="checkout-total">$0.00</strong></div>
+            <button class="button button-primary full-width" type="button" id="place-order-button">Place Order</button>
+            <p class="helper-text">Orders are saved to your account and appear in your order history immediately.</p>
+        </aside>
+    </div>
+</section>
+{% endblock %}

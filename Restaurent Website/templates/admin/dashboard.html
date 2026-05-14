@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-hero compact admin-hero">
+    <div class="container">
+        <span class="eyebrow">Admin Dashboard</span>
+        <h1>Restaurant operations at a glance.</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container admin-layout">
+        <aside class="admin-sidebar">
+            <a href="{{ url_for('pages.admin_dashboard') }}" class="admin-link active">Overview</a>
+            <a href="{{ url_for('pages.admin_menu') }}" class="admin-link">Menu Items</a>
+            <a href="{{ url_for('pages.admin_categories') }}" class="admin-link">Categories</a>
+            <a href="{{ url_for('pages.admin_orders') }}" class="admin-link">Orders</a>
+            <a href="{{ url_for('pages.admin_users') }}" class="admin-link">Users</a>
+            <a href="{{ url_for('pages.admin_reservations') }}" class="admin-link">Reservations</a>
+        </aside>
+        <div class="admin-content">
+            <div class="stats-grid">
+                <article class="stat-card"><span>Total Orders</span><strong>{{ total_orders }}</strong></article>
+                <article class="stat-card"><span>Revenue</span><strong>${{ '%.2f'|format(revenue) }}</strong></article>
+                <article class="stat-card"><span>Users</span><strong>{{ total_users }}</strong></article>
+            </div>
+            <div class="admin-table-card">
+                <div class="table-header">
+                    <h2>Recent Orders</h2>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Order</th><th>Customer</th><th>Status</th><th>Total</th><th>Date</th></tr>
+                    </thead>
+                    <tbody>
+                        {% for order in recent_orders %}
+                            <tr>
+                                <td>#{{ order.id }}</td>
+                                <td>{{ order.user.name }}</td>
+                                <td><span class="status-badge status-{{ order.status|lower }}">{{ order.status }}</span></td>
+                                <td>${{ '%.2f'|format(order.total_price|float) }}</td>
+                                <td>{{ order.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                            </tr>
+                        {% else %}
+                            <tr><td colspan="5">No orders yet.</td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
