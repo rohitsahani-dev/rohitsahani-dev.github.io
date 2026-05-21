@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#05060A"/>
+      <stop offset="0.55" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#9333ea"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1220 280) rotate(133) scale(560 560)">
+      <stop stop-color="#93c5fd" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#93c5fd" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" rx="40" fill="url(#bg)"/>
+  <rect width="1600" height="900" rx="40" fill="url(#halo)"/>
+  <path d="M112 782C342 610 458 652 614 514C770 376 716 168 990 114" stroke="rgba(255,255,255,0.12)" stroke-width="18" stroke-linecap="round"/>
+  <path d="M972 168C1122 246 1252 394 1398 638" stroke="#93c5fd" stroke-opacity="0.45" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="1248" cy="252" r="170" fill="#93c5fd" fill-opacity="0.12"/>
+  <circle cx="1248" cy="252" r="102" fill="#93c5fd" fill-opacity="0.18"/>
+  <rect x="84" y="84" width="622" height="540" rx="34" fill="rgba(10,10,14,0.36)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="132" y="244" fill="white" font-family="Sora, Arial, sans-serif" font-size="88" font-weight="700">Lumen Protocol</text>
+  <text x="132" y="334" fill="white" fill-opacity="0.92" font-family="Manrope, Arial, sans-serif" font-size="54" font-weight="600">Aegis</text>
+  <text x="132" y="430" fill="white" fill-opacity="0.78" font-family="Manrope, Arial, sans-serif" font-size="26" letter-spacing="7">STREAM IN 4K • DOLBY AUDIO • MULTI SUBTITLE</text>
+  <rect x="132" y="492" width="174" height="54" rx="27" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.14)"/>
+  <text x="175" y="527" fill="white" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="700">KAISTREAM</text>
+</svg>

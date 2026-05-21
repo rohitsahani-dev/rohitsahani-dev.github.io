@@ -14,6 +14,7 @@ const contactForm = document.getElementById("contact-form");
 const formStatus = document.getElementById("form-status");
 const currentYear = document.getElementById("current-year");
 const navbar = document.querySelector(".navbar");
+const projectLaunchCards = document.querySelectorAll(".project-card[data-project-url]");
 
 const roles = [
   "AI-powered web systems built for real-world use.",
@@ -163,6 +164,16 @@ function hideLoader() {
   loader.classList.add("is-hidden");
 }
 
+function openProjectFromCard(card) {
+  const projectUrl = card?.dataset?.projectUrl;
+
+  if (!projectUrl) {
+    return;
+  }
+
+  window.location.href = projectUrl;
+}
+
 themeToggle.addEventListener("click", toggleTheme);
 navToggle.addEventListener("click", toggleMenu);
 
@@ -193,6 +204,23 @@ document.addEventListener("click", (event) => {
   if (navMenu.classList.contains("is-open") && navbar && !navbar.contains(event.target)) {
     closeMenu();
   }
+});
+
+projectLaunchCards.forEach((card) => {
+  card.addEventListener("click", (event) => {
+    if (event.target.closest("a, button")) {
+      return;
+    }
+
+    openProjectFromCard(card);
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openProjectFromCard(card);
+    }
+  });
 });
 
 initializeTheme();

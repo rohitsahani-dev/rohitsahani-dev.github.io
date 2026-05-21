@@ -1,70 +1,62 @@
-# 🤖 Rohit Sahani – AI Model Developer Portfolio
+# Rohit Sahani Portfolio
 
-<p align="center">
-  <a href="https://rohitsahani-dev.github.io/#home">
-    <img src="https://github.com/rohitsahani-dev/rohitsahani-dev.github.io/blob/main/assets/images/Preview_Website.png?raw=true" alt="Portfolio Preview" width="800"/>
-  </a>
-</p>
+Personal portfolio website for Rohit Sahani, focused on AI-enabled product work, frontend engineering, and full-stack delivery.
 
-<p align="center">
-  <b>AI Model Developer • Frontend Developer • Problem Solver</b>
-</p>
+## Live Portfolio
 
----
+- Portfolio: [https://rohitsahani-dev.github.io/#home](https://rohitsahani-dev.github.io/#home)
 
-## 🚀 Live Portfolio
+## Featured Project
 
-<p>
-  👉 <a href="https://rohitsahani-dev.github.io/#home">Visit My Portfolio Website</a>
-</p>
+### KaiStream
 
----
+KaiStream is a premium full-stack anime streaming platform built as a showcase project inside this repository.
 
-## 🧠 About This Project
+Highlights:
 
-This is my personal portfolio website built to represent my work as an **AI Model Developer and Web Developer**.
+- Next.js 15 App Router frontend
+- TypeScript, Tailwind CSS, Framer Motion, React Query, Zustand
+- Express.js backend with PostgreSQL, Prisma, Redis, and JWT auth
+- Anime discovery pages, watch player, user dashboard, favorites, history, settings, and admin panel
+- HLS playback with Video.js, subtitle support, and multiple server options
 
-It is designed to:
-- Showcase my technical skills
-- Highlight development projects
-- Present my learning journey in AI and software development
-- Provide a clean way to connect with me
+## Repository Structure
 
----
+```text
+Portfolio/
+├─ assets/
+├─ index.html
+├─ script.js
+├─ style.css
+├─ apps/
+│  ├─ web/
+│  └─ api/
+├─ packages/
+│  └─ shared/
+└─ scripts/
+```
 
-## ⚙️ Tech Stack
+## Local Portfolio Usage
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-- Git & GitHub
-- GitHub Pages (Deployment)
+Open the static portfolio locally with `index.html`, or publish it through GitHub Pages.
 
----
+## KaiStream Local Usage
 
-## ✨ Features
+From the repo root:
 
-<ul>
-  <li>Responsive design for all devices</li>
-  <li>Clean and minimal UI/UX</li>
-  <li>Smooth navigation between sections</li>
-  <li>Projects showcase section</li>
-  <li>Skills representation section</li>
-  <li>Contact section for communication</li>
-  <li>Fast loading and lightweight structure</li>
-</ul>
+```powershell
+npm install
+npm run build
+npm run start --workspace @kaistream/web
+```
 
----
+Then open:
 
-## 📁 Project Structure
+- KaiStream home: `http://127.0.0.1:3000`
+- Watch demo: `http://127.0.0.1:3000/watch/neon-ronin-zero-eclipse/episode/1`
+- Admin page: `http://127.0.0.1:3000/admin`
 
-```bash
-portfolio/
-│── index.html
-│── style.css
-│── script.js
-│
-├── assets/
-│   ├── images/
-│   ├── icons/
+## Notes
 
+- The first portfolio project card showcases KaiStream.
+- Clicking the KaiStream project card opens the local KaiStream app when the Next.js server is running.

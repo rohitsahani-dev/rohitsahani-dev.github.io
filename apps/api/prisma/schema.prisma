@@ -1,0 +1,295 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum AnimeStatus {
+  ONGOING
+  COMPLETED
+  UPCOMING
+}
+
+enum AnimeType {
+  TV
+  MOVIE
+  ONA
+  SPECIAL
+}
+
+enum DubStatus {
+  SUB
+  DUB
+  BOTH
+}
+
+enum NotificationType {
+  AIRING
+  SYSTEM
+  COMMENT
+  RECOMMENDATION
+}
+
+model User {
+  id                 String               @id @default(cuid())
+  name               String
+  email              String               @unique
+  passwordHash       String?
+  avatar             String?
+  role               Role                 @default(USER)
+  preferredLanguage  String               @default("en")
+  preferredAudio     DubStatus            @default(BOTH)
+  autoplayNext       Boolean              @default(true)
+  theaterMode        Boolean              @default(false)
+  googleId           String?              @unique
+  emailVerified      Boolean              @default(false)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  reviews            Review[]
+  favorites          Favorite[]
+  history            History[]
+  comments           Comment[]
+  notifications      Notification[]
+  commentLikes       CommentLike[]
+  passwordResetTokens PasswordResetToken[]
+
+  @@index([role])
+}
+
+model Anime {
+  id                String       @id @default(cuid())
+  slug              String       @unique
+  title             String
+  japaneseTitle     String
+  tagline           String
+  synopsis          String
+  releaseYear       Int
+  season            String
+  type              AnimeType
+  status            AnimeStatus
+  dubStatus         DubStatus
+  maturityRating    String
+  duration          Int
+  totalEpisodes     Int
+  averageRating     Float        @default(0)
+  ratingCount       Int          @default(0)
+  views             Int          @default(0)
+  quality           String
+  featured          Boolean      @default(false)
+  trending          Boolean      @default(false)
+  latest            Boolean      @default(false)
+  topRated          Boolean      @default(false)
+  popularWeek       Boolean      @default(false)
+  recommended       Boolean      @default(false)
+  movie             Boolean      @default(false)
+  bannerImage       String
+  posterImage       String
+  trailerUrl        String?
+  trailerThumbnail  String?
+  upcomingEpisodeAt DateTime?
+  themes            Json
+  characters        Json
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
+  genres            AnimeGenre[]
+  studios           AnimeStudio[]
+  episodes          Episode[]
+  reviews           Review[]
+  favorites         Favorite[]
+  history           History[]
+  comments          Comment[]
+
+  @@index([featured, trending, latest, topRated, popularWeek])
+  @@index([releaseYear, type, status])
+  @@index([averageRating, views])
+}
+
+model Episode {
+  id             String          @id @default(cuid())
+  animeId        String
+  number         Int
+  slug           String
+  title          String
+  synopsis       String
+  duration       Int
+  airDate        DateTime
+  introStart     Int             @default(0)
+  introEnd       Int             @default(0)
+  thumbnailImage String
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  anime          Anime           @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  sources        EpisodeSource[]
+  subtitles      SubtitleTrack[]
+  history        History[]
+  comments       Comment[]
+
+  @@unique([animeId, number])
+  @@unique([animeId, slug])
+  @@index([animeId, airDate])
+}
+
+model EpisodeSource {
+  id        String   @id @default(cuid())
+  episodeId String
+  name      String
+  url       String
+  quality   String
+  region    String
+  priority  Int      @default(0)
+  episode   Episode  @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+
+  @@index([episodeId, priority])
+}
+
+model SubtitleTrack {
+  id        String   @id @default(cuid())
+  episodeId String
+  label     String
+  language  String
+  url       String
+  isDefault Boolean  @default(false)
+  episode   Episode  @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+}
+
+model Genre {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  name        String
+  description String
+  anime       AnimeGenre[]
+}
+
+model Studio {
+  id      String       @id @default(cuid())
+  slug    String       @unique
+  name    String
+  country String
+  anime   AnimeStudio[]
+}
+
+model AnimeGenre {
+  animeId String
+  genreId String
+  anime   Anime @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  genre   Genre @relation(fields: [genreId], references: [id], onDelete: Cascade)
+
+  @@id([animeId, genreId])
+  @@index([genreId])
+}
+
+model AnimeStudio {
+  animeId   String
+  studioId  String
+  anime     Anime  @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  studio    Studio @relation(fields: [studioId], references: [id], onDelete: Cascade)
+
+  @@id([animeId, studioId])
+  @@index([studioId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  animeId    String
+  userId    String
+  rating    Float
+  headline  String
+  body      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  anime     Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([animeId, userId])
+  @@index([animeId, createdAt])
+}
+
+model Favorite {
+  userId    String
+  animeId   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  anime     Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+
+  @@id([userId, animeId])
+  @@index([animeId])
+}
+
+model History {
+  id         String   @id @default(cuid())
+  userId     String
+  animeId    String
+  episodeId  String
+  progress   Float    @default(0)
+  watched    Boolean  @default(false)
+  updatedAt  DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  anime      Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  episode    Episode  @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, animeId, episodeId])
+  @@index([userId, updatedAt])
+  @@index([animeId])
+}
+
+model Comment {
+  id         String        @id @default(cuid())
+  animeId    String
+  userId     String
+  episodeId  String?
+  message    String
+  likesCount Int           @default(0)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+  anime      Anime         @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  user       User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  episode    Episode?      @relation(fields: [episodeId], references: [id], onDelete: SetNull)
+  likes      CommentLike[]
+
+  @@index([animeId, createdAt])
+  @@index([episodeId])
+}
+
+model CommentLike {
+  commentId String
+  userId    String
+  createdAt DateTime @default(now())
+  comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([commentId, userId])
+  @@index([userId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  title     String
+  body      String
+  type      NotificationType
+  read      Boolean          @default(false)
+  createdAt DateTime         @default(now())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, read, createdAt])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+}

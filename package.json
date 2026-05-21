@@ -1,0 +1,23 @@
+{
+  "name": "kaistream",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace @kaistream/web",
+    "dev:api": "npm run dev --workspace @kaistream/api",
+    "build": "npm run build --workspace @kaistream/shared && npm run build --workspace @kaistream/api && npm run build --workspace @kaistream/web",
+    "lint": "npm run lint --workspace @kaistream/api && npm run lint --workspace @kaistream/web",
+    "typecheck": "npm run build --workspace @kaistream/shared && npm run typecheck --workspace @kaistream/api && npm run typecheck --workspace @kaistream/web",
+    "db:seed": "npm run db:seed --workspace @kaistream/api",
+    "assets:generate": "node ./scripts/generate-art.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

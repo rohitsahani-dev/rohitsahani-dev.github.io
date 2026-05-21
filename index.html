@@ -300,42 +300,52 @@
         </div>
 
         <div class="projects-grid">
-          <article class="project-card reveal">
+          <article
+            class="project-card reveal"
+            data-project-url="http://127.0.0.1:3000"
+            tabindex="0"
+            role="link"
+            aria-label="Open KaiStream anime streaming project"
+          >
             <div class="project-card__media">
-              <img src="assets/images/project-atlas.svg" alt="Support Intelligence Platform preview">
+              <img src="assets/images/project-kaistream-hero.svg" alt="KaiStream anime streaming platform preview">
             </div>
             <div class="project-card__content">
-              <h3>Support Intelligence Platform</h3>
+              <h3>KaiStream</h3>
               <p class="project-card__problem">
-                Helps support teams sort and respond to incoming requests with more consistency.
+                A premium full-stack anime streaming platform with modern discovery, HLS playback,
+                dashboards, admin tooling, and polished UI motion.
               </p>
               <p>
-                This project uses a Python-based model to review user input, classify request types,
-                and pass structured results to a web interface built with JavaScript. It turns raw
-                queries into usable support workflows.
+                KaiStream was built with Next.js 15, TypeScript, Tailwind CSS, Framer Motion,
+                React Query, Zustand, Express, PostgreSQL, Prisma, Redis, JWT authentication, and
+                Video.js. It includes homepage discovery rails, anime detail pages, adaptive watch
+                playback, watch history, favorites, user settings, and an admin dashboard.
               </p>
               <ul class="project-card__stack">
-                <li>Python</li>
-                <li>JavaScript</li>
-                <li>REST API</li>
-                <li>HTML/CSS</li>
+                <li>Next.js 15</li>
+                <li>Express.js</li>
+                <li>PostgreSQL + Prisma</li>
+                <li>Video.js + HLS</li>
               </ul>
               <p class="project-card__outcome">
-                Outcome: clearer triage flow, faster response handling, and a practical AI layer for
-                web-based operations.
+                Outcome: a portfolio-ready production build that demonstrates full-stack product
+                delivery, streaming UX design, authentication flows, and modular frontend/backend
+                architecture in one polished project.
               </p>
+              <p class="project-card__hint">Click the card or use the buttons below to open the live KaiStream app.</p>
               <div class="project-card__actions">
                 <a
                   class="button button--secondary"
-                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20demo%20for%20Support%20Intelligence%20Platform"
+                  href="http://127.0.0.1:3000"
                 >
-                  Request Demo
+                  Open KaiStream
                 </a>
                 <a
                   class="button button--ghost"
-                  href="mailto:rohit.sahani.dev@gmail.com?subject=Request%20repository%20details%20for%20Support%20Intelligence%20Platform"
+                  href="http://127.0.0.1:3000/watch/neon-ronin-zero-eclipse/episode/1"
                 >
-                  Request Repository
+                  Open Watch Demo
                 </a>
               </div>
             </div>
