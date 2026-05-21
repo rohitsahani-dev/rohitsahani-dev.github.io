@@ -1,0 +1,43 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="40" fill="#0F1117"/>
+  <rect x="24" y="24" width="1152" height="672" rx="32" fill="url(#bg)"/>
+  <circle cx="1008" cy="164" r="180" fill="url(#glow)" fill-opacity="0.8"/>
+  <circle cx="1012" cy="164" r="96" fill="#F7B87B" fill-opacity="0.18"/>
+  <rect x="74" y="86" width="720" height="548" rx="28" fill="#151922" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="838" y="118" width="286" height="482" rx="28" fill="#211A17" stroke="rgba(255,255,255,0.08)"/>
+  <text x="126" y="170" fill="#F9E8D5" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="8">LA BELLA ITALIA</text>
+  <text x="126" y="256" fill="#FFF6EE" font-family="Georgia, serif" font-size="74" font-weight="700">Authentic Italian</text>
+  <text x="126" y="334" fill="#FFF6EE" font-family="Georgia, serif" font-size="74" font-weight="700">Excellence</text>
+  <text x="126" y="396" fill="#D7C2AF" font-family="Arial, sans-serif" font-size="28">Premium dining, reservations, menu discovery, and private events</text>
+  <text x="126" y="436" fill="#D7C2AF" font-family="Arial, sans-serif" font-size="28">wrapped in a polished multi-page restaurant experience.</text>
+  <rect x="126" y="498" width="220" height="72" rx="36" fill="#C96B3B"/>
+  <text x="171" y="544" fill="#FFF8F1" font-family="Arial, sans-serif" font-size="30" font-weight="700">Book Table</text>
+  <rect x="364" y="498" width="228" height="72" rx="36" fill="#2A2320" stroke="#6F584B"/>
+  <text x="415" y="544" fill="#F4E3D3" font-family="Arial, sans-serif" font-size="30" font-weight="700">Explore Menu</text>
+  <rect x="884" y="164" width="194" height="194" rx="32" fill="url(#plate)"/>
+  <circle cx="981" cy="261" r="58" fill="#F3DBC1"/>
+  <circle cx="981" cy="261" r="40" fill="#C96B3B" fill-opacity="0.88"/>
+  <path d="M957 249C972 229 1003 228 1018 247C1032 265 1028 292 1008 303C991 313 968 308 955 292" stroke="#FFE7CF" stroke-width="7" stroke-linecap="round"/>
+  <rect x="884" y="390" width="194" height="126" rx="24" fill="#17120F" stroke="#4A3930"/>
+  <text x="914" y="434" fill="#F7E7D6" font-family="Arial, sans-serif" font-size="22" font-weight="700">Highlights</text>
+  <text x="914" y="468" fill="#D1BBA7" font-family="Arial, sans-serif" font-size="18">Reservations</text>
+  <text x="914" y="498" fill="#D1BBA7" font-family="Arial, sans-serif" font-size="18">Dynamic Menu</text>
+  <text x="914" y="528" fill="#D1BBA7" font-family="Arial, sans-serif" font-size="18">Admin Dashboard</text>
+  <rect x="126" y="112" width="182" height="40" rx="20" fill="#271E1A" stroke="#6A4D3F"/>
+  <text x="154" y="138" fill="#F6C99B" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">RESTAURANT APP</text>
+  <defs>
+    <linearGradient id="bg" x1="68" y1="56" x2="1134" y2="664" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#161A25"/>
+      <stop offset="0.52" stop-color="#241A17"/>
+      <stop offset="1" stop-color="#4A1E18"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1008 164) rotate(90) scale(180)">
+      <stop stop-color="#FF9A5A"/>
+      <stop offset="1" stop-color="#FF9A5A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="plate" x1="884" y1="164" x2="1078" y2="358" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A64A2C"/>
+      <stop offset="1" stop-color="#E28D54"/>
+    </linearGradient>
+  </defs>
+</svg>
