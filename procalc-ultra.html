@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProCalc Ultra - Professional Scientific Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0c0c1d;
+            --bg-secondary: #12122a;
+            --bg-card: rgba(20, 20, 45, 0.7);
+            --bg-display: rgba(8, 8, 20, 0.9);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.6);
+            --text-muted: rgba(255, 255, 255, 0.35);
+            --accent-cyan: #00d4ff;
+            --accent-blue: #4f46e5;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+            --accent-orange: #f97316;
+            --accent-green: #22c55e;
+            --accent-red: #ef4444;
+            --accent-yellow: #eab308;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+            top: -100px;
+            left: -100px;
+            animation: float1 20s infinite ease-in-out;
+        }
+
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            bottom: -50px;
+            right: -50px;
+            animation: float2 25s infinite ease-in-out;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, 50px) scale(1.1); }
+            66% { transform: translate(50px, 100px) scale(0.9); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-80px, -40px) scale(1.2); }
+            66% { transform: translate(-40px, -80px) scale(0.8); }
+        }
+
+        .calculator-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 520px;
+            width: 100%;
+        }
+
+        .calculator-container {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 28px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+                0 0 100px rgba(79, 70, 229, 0.08);
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .calculator-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        .brand-text h1 {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .brand-text .subtitle {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            transform: rotate(15deg);
+        }
+
+        /* Display */
+        .display-container {
+            background: var(--bg-display);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .display-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), transparent);
+        }
+
+        .memory-indicator {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            min-height: 20px;
+        }
+
+        .memory-badge {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .memory-badge.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .memory-badge.m {
+            background: rgba(234, 180, 8, 0.15);
+            color: var(--accent-yellow);
+            border: 1px solid rgba(234, 180, 8, 0.3);
+        }
+
+        .memory-badge.deg {
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .previous-operand {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            min-height: 24px;
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 1.4;
+        }
+
+        .current-operand {
+            color: var(--text-primary);
+            font-size: 2.6rem;
+            font-weight: 300;
+            text-align: right;
+            font-family: 'JetBrains Mono', monospace;
+            min-height: 50px;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+        }
+
+        .current-operand.error {
+            color: var(--accent-red);
+            text-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+        }
+
+        /* Mode Tabs */
+        .mode-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 6px;
+            border-radius: 14px;
+        }
+
+        .mode-tab {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
+        }
+
+        .mode-tab:hover:not(.active) {
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Buttons Grid */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .btn {
+            border: none;
+            border-radius: 14px;
+            padding: 16px 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-number {
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-number:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-operator {
+            background: rgba(79, 70, 229, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+            font-size: 1.2rem;
+        }
+
+        .btn-operator:hover {
+            background: rgba(79, 70, 229, 0.25);
+            border-color: rgba(79, 70, 229, 0.4);
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-function {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--accent-red);
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            font-size: 0.8rem;
+        }
+
+        .btn-function:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.3);
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.15);
+        }
+
+        .btn-scientific {
+            background: rgba(168, 85, 247, 0.1);
+            color: var(--accent-purple);
+            border: 1px solid rgba(168, 85, 247, 0.15);
+            font-size: 0.75rem;
+        }
+
+        .btn-scientific:hover {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: rgba(168, 85, 247, 0.3);
+            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15);
+        }
+
+        .btn-memory {
+            background: rgba(234, 180, 8, 0.1);
+            color: var(--accent-yellow);
+            border: 1px solid rgba(234, 180, 8, 0.15);
+            font-size: 0.75rem;
+        }
+
+        .btn-memory:hover {
+            background: rgba(234, 180, 8, 0.2);
+            border-color: rgba(234, 180, 8, 0.3);
+            box-shadow: 0 4px 20px rgba(234, 180, 8, 0.15);
+        }
+
+        .btn-equals {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #fff;
+            grid-column: span 2;
+            font-size: 1.3rem;
+            border: none;
+            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-equals:hover {
+            background: linear-gradient(135deg, #5b54e8, #b46cf8);
+            box-shadow: 0 8px 30px rgba(79, 70, 229, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-equals:active {
+            transform: scale(0.95) translateY(0);
+        }
+
+        .btn-zero {
+            grid-column: span 2;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* History Panel */
+        .history-panel {
+            margin-top: 24px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .history-title {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .history-action {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .history-action:hover {
+            color: var(--accent-red);
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .history-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .history-item .expr {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .history-item .result {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .history-empty {
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Scrollbar */
+        .history-panel::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .history-panel::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .history-panel::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .history-panel::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            text-align: center;
+            margin-top: 16px;
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+
+        .keyboard-hint kbd {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .calculator-container {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .calculating {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 520px) {
+            .calculator-container {
+                padding: 20px;
+                border-radius: 24px;
+            }
+
+            .btn {
+                padding: 14px 4px;
+                font-size: 0.9rem;
+                border-radius: 12px;
+            }
+
+            .current-operand {
+                font-size: 2rem;
+            }
+
+            .buttons-grid {
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .btn {
+                padding: 12px 2px;
+                font-size: 0.8rem;
+            }
+
+            .current-operand {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <div class="calculator-wrapper">
+        <div class="calculator-container">
+            <div class="header">
+                <div class="brand">
+                    <div class="brand-icon">∑</div>
+                    <div class="brand-text">
+                        <h1>ProCalc Ultra</h1>
+                        <div class="subtitle">Scientific Calculator</div>
+                    </div>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+            </div>
+
+            <div class="display-container">
+                <div class="memory-indicator">
+                    <span class="memory-badge m" id="mem-badge">M</span>
+                    <span class="memory-badge deg" id="deg-badge">DEG</span>
+                </div>
+                <div class="previous-operand" id="previous"></div>
+                <div class="current-operand" id="current">0</div>
+            </div>
+
+            <div class="mode-tabs">
+                <button class="mode-tab active" onclick="setMode('standard')">Standard</button>
+                <button class="mode-tab" onclick="setMode('scientific')">Scientific</button>
+                <button class="mode-tab" onclick="setMode('programmer')">Programmer</button>
+            </div>
+
+            <!-- Standard Mode -->
+            <div class="buttons-grid" id="standard-buttons">
+                <button class="btn btn-function" onclick="clearAll()">AC</button>
+                <button class="btn btn-function" onclick="clearEntry()">CE</button>
+                <button class="btn btn-function" onclick="deleteLast()">⌫</button>
+                <button class="btn btn-operator" onclick="appendOperator('/')">÷</button>
+                <button class="btn btn-memory" onclick="memoryClear()">MC</button>
+
+                <button class="btn btn-number" onclick="appendNumber('7')">7</button>
+                <button class="btn btn-number" onclick="appendNumber('8')">8</button>
+                <button class="btn btn-number" onclick="appendNumber('9')">9</button>
+                <button class="btn btn-operator" onclick="appendOperator('*')">×</button>
+                <button class="btn btn-memory" onclick="memoryRecall()">MR</button>
+
+                <button class="btn btn-number" onclick="appendNumber('4')">4</button>
+                <button class="btn btn-number" onclick="appendNumber('5')">5</button>
+                <button class="btn btn-number" onclick="appendNumber('6')">6</button>
+                <button class="btn btn-operator" onclick="appendOperator('-')">−</button>
+                <button class="btn btn-memory" onclick="memoryAdd()">M+</button>
+
+                <button class="btn btn-number" onclick="appendNumber('1')">1</button>
+                <button class="btn btn-number" onclick="appendNumber('2')">2</button>
+                <button class="btn btn-number" onclick="appendNumber('3')">3</button>
+                <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+                <button class="btn btn-memory" onclick="memorySubtract()">M−</button>
+
+                <button class="btn btn-number btn-zero" onclick="appendNumber('0')">0</button>
+                <button class="btn btn-number" onclick="appendNumber('.')">.</button>
+                <button class="btn btn-operator" onclick="toggleSign()">+/−</button>
+                <button class="btn btn-equals" onclick="calculate()">=</button>
+            </div>
+
+            <!-- Scientific Mode -->
+            <div class="buttons-grid hidden" id="scientific-buttons">
+                <button class="btn btn-function" onclick="clearAll()">AC</button>
+                <button class="btn btn-function" onclick="clearEntry()">CE</button>
+                <button class="btn btn-function" onclick="deleteLast()">⌫</button>
+                <button class="btn btn-scientific" onclick="toggleAngleMode()" id="angle-btn">DEG</button>
+                <button class="btn btn-memory" onclick="memoryClear()">MC</button>
+
+                <button class="btn btn-scientific" onclick="appendFunction('sin')">sin</button>
+                <button class="btn btn-scientific" onclick="appendFunction('cos')">cos</button>
+                <button class="btn btn-scientific" onclick="appendFunction('tan')">tan</button>
+                <button class="btn btn-operator" onclick="appendOperator('/')">÷</button>
+                <button class="btn btn-memory" onclick="memoryRecall()">MR</button>
+
+                <button class="btn btn-scientific" onclick="appendFunction('asin')">sin⁻¹</button>
+                <button class="btn btn-scientific" onclick="appendFunction('acos')">cos⁻¹</button>
+                <button class="btn btn-scientific" onclick="appendFunction('atan')">tan⁻¹</button>
+                <button class="btn btn-operator" onclick="appendOperator('*')">×</button>
+                <button class="btn btn-memory" onclick="memoryAdd()">M+</button>
+
+                <button class="btn btn-scientific" onclick="appendFunction('log')">log</button>
+                <button class="btn btn-scientific" onclick="appendFunction('ln')">ln</button>
+                <button class="btn btn-scientific" onclick="appendFunction('pow')">x^y</button>
+                <button class="btn btn-operator" onclick="appendOperator('-')">−</button>
+                <button class="btn btn-memory" onclick="memorySubtract()">M−</button>
+
+                <button class="btn btn-scientific" onclick="appendFunction('sqrt')">√</button>
+                <button class="btn btn-scientific" onclick="appendFunction('cbrt')">∛</button>
+                <button class="btn btn-scientific" onclick="appendFunction('factorial')">n!</button>
+                <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+                <button class="btn btn-scientific" onclick="appendFunction('pi')">π</button>
+
+                <button class="btn btn-number btn-zero" onclick="appendNumber('0')">0</button>
+                <button class="btn btn-number" onclick="appendNumber('.')">.</button>
+                <button class="btn btn-operator" onclick="toggleSign()">+/−</button>
+                <button class="btn btn-scientific" onclick="appendFunction('e')">e</button>
+                <button class="btn btn-equals" onclick="calculate()">=</button>
+            </div>
+
+            <!-- Programmer Mode -->
+            <div class="buttons-grid hidden" id="programmer-buttons">
+                <button class="btn btn-function" onclick="clearAll()">AC</button>
+                <button class="btn btn-function" onclick="clearEntry()">CE</button>
+                <button class="btn btn-function" onclick="deleteLast()">⌫</button>
+                <button class="btn btn-scientific" onclick="toggleBase()" id="base-btn">HEX</button>
+                <button class="btn btn-memory" onclick="memoryClear()">MC</button>
+
+                <button class="btn btn-scientific" onclick="appendHex('A')">A</button>
+                <button class="btn btn-scientific" onclick="appendHex('B')">B</button>
+                <button class="btn btn-scientific" onclick="appendHex('C')">C</button>
+                <button class="btn btn-operator" onclick="appendOperator('/')">÷</button>
+                <button class="btn btn-memory" onclick="memoryRecall()">MR</button>
+
+                <button class="btn btn-scientific" onclick="appendHex('D')">D</button>
+                <button class="btn btn-scientific" onclick="appendHex('E')">E</button>
+                <button class="btn btn-scientific" onclick="appendHex('F')">F</button>
+                <button class="btn btn-operator" onclick="appendOperator('*')">×</button>
+                <button class="btn btn-memory" onclick="memoryAdd()">M+</button>
+
+                <button class="btn btn-scientific" onclick="appendFunction('bin')">BIN</button>
+                <button class="btn btn-scientific" onclick="appendFunction('oct')">OCT</button>
+                <button class="btn btn-scientific" onclick="appendFunction('dec')">DEC</button>
+                <button class="btn btn-operator" onclick="appendOperator('-')">−</button>
+                <button class="btn btn-memory" onclick="memorySubtract()">M−</button>
+
+                <button class="btn btn-scientific" onclick="appendFunction('hex')">HEX</button>
+                <button class="btn btn-scientific" onclick="appendFunction('and')">AND</button>
+                <button class="btn btn-scientific" onclick="appendFunction('or')">OR</button>
+                <button class="btn btn-operator" onclick="appendOperator('+')">+</button>
+                <button class="btn btn-scientific" onclick="appendFunction('not')">NOT</button>
+
+                <button class="btn btn-number btn-zero" onclick="appendNumber('0')">0</button>
+                <button class="btn btn-number" onclick="appendNumber('.')">.</button>
+                <button class="btn btn-scientific" onclick="appendFunction('xor')">XOR</button>
+                <button class="btn btn-scientific" onclick="appendFunction('shl')">SHL</button>
+                <button class="btn btn-equals" onclick="calculate()">=</button>
+            </div>
+
+            <div class="history-panel">
+                <div class="history-header">
+                    <span class="history-title">Calculation History</span>
+                    <div class="history-actions">
+                        <span class="history-action" onclick="clearHistory()">Clear All</span>
+                    </div>
+                </div>
+                <div id="history-list">
+                    <div class="history-empty">No calculations yet</div>
+                </div>
+            </div>
+
+            <div class="keyboard-hint">
+                Keyboard: <kbd>0-9</kbd> <kbd>.</kbd> <kbd>+ − × /</kbd> <kbd>Enter</kbd> <kbd>Esc</kbd> <kbd>Backspace</kbd>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let currentOperand = '0';
+        let previousOperand = '';
+        let operation = undefined;
+        let shouldResetScreen = false;
+        let history = [];
+        let memory = 0;
+        let isMemorySet = false;
+        let angleMode = 'DEG'; // DEG or RAD
+        let currentBase = 10;
+        let isDarkTheme = true;
+
+        const currentDisplay = document.getElementById('current');
+        const previousDisplay = document.getElementById('previous');
+        const historyList = document.getElementById('history-list');
+        const memBadge = document.getElementById('mem-badge');
+        const degBadge = document.getElementById('deg-badge');
+
+        function updateDisplay() {
+            currentDisplay.textContent = currentOperand;
+            currentDisplay.classList.toggle('error', currentOperand === 'Error');
+            if (operation != null) {
+                previousDisplay.textContent = `${previousOperand} ${operation}`;
+            } else {
+                previousDisplay.textContent = previousOperand;
+            }
+        }
+
+        function appendNumber(number) {
+            if (shouldResetScreen) {
+                currentOperand = '';
+                shouldResetScreen = false;
+            }
+            if (number === '.' && currentOperand.includes('.')) return;
+            if (currentOperand === '0' && number !== '.') {
+                currentOperand = number;
+            } else if (currentOperand === 'Error') {
+                currentOperand = number;
+            } else {
+                currentOperand += number;
+            }
+            updateDisplay();
+        }
+
+        function appendHex(hex) {
+            if (shouldResetScreen) {
+                currentOperand = '';
+                shouldResetScreen = false;
+            }
+            if (currentOperand === '0') {
+                currentOperand = hex;
+            } else if (currentOperand === 'Error') {
+                currentOperand = hex;
+            } else {
+                currentOperand += hex;
+            }
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            if (currentOperand === '' || currentOperand === 'Error') return;
+            if (previousOperand !== '') {
+                calculate();
+            }
+            operation = op;
+            previousOperand = currentOperand;
+            currentOperand = '';
+            updateDisplay();
+        }
+
+        function appendFunction(func) {
+            let num = parseFloat(currentOperand);
+            let result;
+            let expression = '';
+
+            switch(func) {
+                case 'sqrt':
+                    if (num < 0) { currentOperand = 'Error'; updateDisplay(); return; }
+                    result = Math.sqrt(num);
+                    expression = `√(${num})`;
+                    break;
+                case 'cbrt':
+                    result = Math.cbrt(num);
+                    expression = `∛(${num})`;
+                    break;
+                case 'pow':
+                    if (previousOperand !== '' && operation === 'x^y') {
+                        result = Math.pow(parseFloat(previousOperand), num);
+                        expression = `${previousOperand}^${num}`;
+                        previousOperand = '';
+                        operation = undefined;
+                    } else {
+                        previousOperand = currentOperand;
+                        operation = 'x^y';
+                        currentOperand = '';
+                        updateDisplay();
+                        return;
+                    }
+                    break;
+                case 'sin':
+                    result = angleMode === 'DEG' ? Math.sin(num * Math.PI / 180) : Math.sin(num);
+                    expression = `sin(${num}${angleMode === 'DEG' ? '°' : ''})`;
+                    break;
+                case 'cos':
+                    result = angleMode === 'DEG' ? Math.cos(num * Math.PI / 180) : Math.cos(num);
+                    expression = `cos(${num}${angleMode === 'DEG' ? '°' : ''})`;
+                    break;
+                case 'tan':
+                    result = angleMode === 'DEG' ? Math.tan(num * Math.PI / 180) : Math.tan(num);
+                    expression = `tan(${num}${angleMode === 'DEG' ? '°' : ''})`;
+                    break;
+                case 'asin':
+                    if (num < -1 || num > 1) { currentOperand = 'Error'; updateDisplay(); return; }
+                    result = angleMode === 'DEG' ? Math.asin(num) * 180 / Math.PI : Math.asin(num);
+                    expression = `sin⁻¹(${num})`;
+                    break;
+                case 'acos':
+                    if (num < -1 || num > 1) { currentOperand = 'Error'; updateDisplay(); return; }
+                    result = angleMode === 'DEG' ? Math.acos(num) * 180 / Math.PI : Math.acos(num);
+                    expression = `cos⁻¹(${num})`;
+                    break;
+                case 'atan':
+                    result = angleMode === 'DEG' ? Math.atan(num) * 180 / Math.PI : Math.atan(num);
+                    expression = `tan⁻¹(${num})`;
+                    break;
+                case 'log':
+                    if (num <= 0) { currentOperand = 'Error'; updateDisplay(); return; }
+                    result = Math.log10(num);
+                    expression = `log(${num})`;
+                    break;
+                case 'ln':
+                    if (num <= 0) { currentOperand = 'Error'; updateDisplay(); return; }
+                    result = Math.log(num);
+                    expression = `ln(${num})`;
+                    break;
+                case 'factorial':
+                    if (num < 0 || !Number.isInteger(num) || num > 170) { currentOperand = 'Error'; updateDisplay(); return; }
+                    result = factorial(num);
+                    expression = `${num}!`;
+                    break;
+                case 'pi':
+                    result = Math.PI;
+                    expression = 'π';
+                    break;
+                case 'e':
+                    result = Math.E;
+                    expression = 'e';
+                    break;
+                case 'bin':
+                    result = parseInt(currentOperand).toString(2);
+                    expression = `${currentOperand} → BIN`;
+                    break;
+                case 'oct':
+                    result = parseInt(currentOperand).toString(8);
+                    expression = `${currentOperand} → OCT`;
+                    break;
+                case 'dec':
+                    result = parseInt(currentOperand, currentBase).toString(10);
+                    expression = `${currentOperand} → DEC`;
+                    break;
+                case 'hex':
+                    result = parseInt(currentOperand).toString(16).toUpperCase();
+                    expression = `${currentOperand} → HEX`;
+                    break;
+                case 'and':
+                    previousOperand = currentOperand;
+                    operation = '&';
+                    currentOperand = '';
+                    updateDisplay();
+                    return;
+                case 'or':
+                    previousOperand = currentOperand;
+                    operation = '|';
+                    currentOperand = '';
+                    updateDisplay();
+                    return;
+                case 'xor':
+                    previousOperand = currentOperand;
+                    operation = '^';
+                    currentOperand = '';
+                    updateDisplay();
+                    return;
+                case 'not':
+                    result = ~parseInt(currentOperand);
+                    expression = `NOT(${currentOperand})`;
+                    break;
+                case 'shl':
+                    previousOperand = currentOperand;
+                    operation = '<<';
+                    currentOperand = '';
+                    updateDisplay();
+                    return;
+            }
+
+            currentOperand = formatNumber(result);
+            addToHistory(expression, currentOperand);
+            shouldResetScreen = true;
+            updateDisplay();
+        }
+
+        function factorial(n) {
+            if (n === 0 || n === 1) return 1;
+            let result = 1;
+            for (let i = 2; i <= n; i++) result *= i;
+            return result;
+        }
+
+        function calculate() {
+            let computation;
+            const prev = parseFloat(previousOperand);
+            const current = parseFloat(currentOperand);
+
+            if (isNaN(prev) || isNaN(current)) {
+                if (operation === '&' || operation === '|' || operation === '^' || operation === '<<') {
+                    const p = parseInt(previousOperand);
+                    const c = parseInt(currentOperand);
+                    switch (operation) {
+                        case '&': computation = p & c; break;
+                        case '|': computation = p | c; break;
+                        case '^': computation = p ^ c; break;
+                        case '<<': computation = p << c; break;
+                    }
+                    let expression = `${previousOperand} ${operation} ${currentOperand}`;
+                    currentOperand = computation.toString();
+                    previousOperand = '';
+                    operation = undefined;
+                    shouldResetScreen = true;
+                    addToHistory(expression, currentOperand);
+                    updateDisplay();
+                    return;
+                }
+                return;
+            }
+
+            switch (operation) {
+                case '+': computation = prev + current; break;
+                case '-': computation = prev - current; break;
+                case '*': computation = prev * current; break;
+                case '/':
+                    if (current === 0) { currentOperand = 'Error'; previousOperand = ''; operation = undefined; updateDisplay(); return; }
+                    computation = prev / current; break;
+                case '%': computation = prev % current; break;
+                case 'x^y': computation = Math.pow(prev, current); break;
+                default: return;
+            }
+
+            let expression = `${previousOperand} ${operation} ${current}`;
+            currentOperand = formatNumber(computation);
+            previousOperand = '';
+            operation = undefined;
+            shouldResetScreen = true;
+            addToHistory(expression, currentOperand);
+            updateDisplay();
+        }
+
+        function formatNumber(number) {
+            if (typeof number === 'string') return number;
+            if (!isFinite(number)) return 'Error';
+            if (Number.isInteger(number)) return number.toString();
+            return parseFloat(number.toFixed(12)).toString();
+        }
+
+        function clearAll() {
+            currentOperand = '0';
+            previousOperand = '';
+            operation = undefined;
+            updateDisplay();
+        }
+
+        function clearEntry() {
+            currentOperand = '0';
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            if (currentOperand === 'Error') { currentOperand = '0'; }
+            else if (currentOperand.length > 1) { currentOperand = currentOperand.slice(0, -1); }
+            else { currentOperand = '0'; }
+            updateDisplay();
+        }
+
+        function toggleSign() {
+            if (currentOperand === '0' || currentOperand === 'Error') return;
+            currentOperand = (parseFloat(currentOperand) * -1).toString();
+            updateDisplay();
+        }
+
+        // Memory functions
+        function memoryClear() {
+            memory = 0;
+            isMemorySet = false;
+            memBadge.classList.remove('active');
+        }
+
+        function memoryRecall() {
+            currentOperand = memory.toString();
+            shouldResetScreen = true;
+            updateDisplay();
+        }
+
+        function memoryAdd() {
+            if (currentOperand !== 'Error') {
+                memory += parseFloat(currentOperand);
+                isMemorySet = true;
+                memBadge.classList.add('active');
+            }
+        }
+
+        function memorySubtract() {
+            if (currentOperand !== 'Error') {
+                memory -= parseFloat(currentOperand);
+                isMemorySet = true;
+                memBadge.classList.add('active');
+            }
+        }
+
+        // Angle mode
+        function toggleAngleMode() {
+            angleMode = angleMode === 'DEG' ? 'RAD' : 'DEG';
+            degBadge.textContent = angleMode;
+            document.getElementById('angle-btn').textContent = angleMode;
+        }
+
+        // Base toggle
+        function toggleBase() {
+            const bases = [10, 16, 8, 2];
+            const labels = ['HEX', 'OCT', 'BIN', 'DEC'];
+            const idx = bases.indexOf(currentBase);
+            currentBase = bases[(idx + 1) % bases.length];
+            document.getElementById('base-btn').textContent = labels[(idx + 1) % labels.length];
+        }
+
+        // History
+        function addToHistory(expression, result) {
+            history.unshift({ expression, result });
+            if (history.length > 15) history.pop();
+            renderHistory();
+        }
+
+        function renderHistory() {
+            if (history.length === 0) {
+                historyList.innerHTML = '<div class="history-empty">No calculations yet</div>';
+                return;
+            }
+            historyList.innerHTML = history.map((item, index) => `
+                <div class="history-item" onclick="loadHistoryItem(${index})">
+                    <span class="expr">${item.expression}</span>
+                    <span class="result">= ${item.result}</span>
+                </div>
+            `).join('');
+        }
+
+        function loadHistoryItem(index) {
+            currentOperand = history[index].result;
+            shouldResetScreen = true;
+            updateDisplay();
+        }
+
+        function clearHistory() {
+            history = [];
+            renderHistory();
+        }
+
+        // Mode switching
+        function setMode(mode) {
+            const standard = document.getElementById('standard-buttons');
+            const scientific = document.getElementById('scientific-buttons');
+            const programmer = document.getElementById('programmer-buttons');
+            const tabs = document.querySelectorAll('.mode-tab');
+
+            standard.classList.add('hidden');
+            scientific.classList.add('hidden');
+            programmer.classList.add('hidden');
+            tabs.forEach(t => t.classList.remove('active'));
+
+            if (mode === 'standard') {
+                standard.classList.remove('hidden');
+                tabs[0].classList.add('active');
+            } else if (mode === 'scientific') {
+                scientific.classList.remove('hidden');
+                tabs[1].classList.add('active');
+            } else {
+                programmer.classList.remove('hidden');
+                tabs[2].classList.add('active');
+            }
+        }
+
+        // Theme toggle
+        function toggleTheme() {
+            isDarkTheme = !isDarkTheme;
+            const root = document.documentElement;
+            const btn = document.querySelector('.theme-toggle');
+
+            if (!isDarkTheme) {
+                root.style.setProperty('--bg-primary', '#f0f0f5');
+                root.style.setProperty('--bg-secondary', '#e8e8f0');
+                root.style.setProperty('--bg-card', 'rgba(255, 255, 255, 0.8)');
+                root.style.setProperty('--bg-display', 'rgba(240, 240, 245, 0.95)');
+                root.style.setProperty('--text-primary', '#1a1a2e');
+                root.style.setProperty('--text-secondary', 'rgba(26, 26, 46, 0.7)');
+                root.style.setProperty('--text-muted', 'rgba(26, 26, 46, 0.45)');
+                root.style.setProperty('--glass-border', 'rgba(0, 0, 0, 0.08)');
+                btn.textContent = '☀️';
+            } else {
+                root.style.setProperty('--bg-primary', '#0c0c1d');
+                root.style.setProperty('--bg-secondary', '#12122a');
+                root.style.setProperty('--bg-card', 'rgba(20, 20, 45, 0.7)');
+                root.style.setProperty('--bg-display', 'rgba(8, 8, 20, 0.9)');
+                root.style.setProperty('--text-primary', '#ffffff');
+                root.style.setProperty('--text-secondary', 'rgba(255, 255, 255, 0.6)');
+                root.style.setProperty('--text-muted', 'rgba(255, 255, 255, 0.35)');
+                root.style.setProperty('--glass-border', 'rgba(255, 255, 255, 0.08)');
+                btn.textContent = '🌙';
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') appendNumber(e.key);
+            if (e.key === '.') appendNumber('.');
+            if (e.key === '+') appendOperator('+');
+            if (e.key === '-') appendOperator('-');
+            if (e.key === '*') appendOperator('*');
+            if (e.key === '/') { e.preventDefault(); appendOperator('/'); }
+            if (e.key === '%') appendOperator('%');
+            if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); calculate(); }
+            if (e.key === 'Escape') clearAll();
+            if (e.key === 'Backspace') deleteLast();
+            if (e.key === '(' || e.key === ')') {
+                // Parentheses support could be added here
+            }
+        });
+
+        updateDisplay();
+    </script>
+</body>
+</html>
