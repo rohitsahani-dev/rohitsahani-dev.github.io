@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "video.js/dist/video-js.css";
 
 import { QueryProvider } from "@/components/providers/query-provider";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Footer />
           </div>
         </QueryProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
