@@ -1,6 +1,6 @@
 {
-  "name": "CINE+DAILY — Deadpool III Showcase",
-  "description": "Interactive editorial showcase and IMAX ticket booking experience for Marvel Studios' Deadpool III, directed by Shawn Levy.",
+  "name": "Rohit Sahani Portfolio",
+  "description": "Personal portfolio of Rohit Sahani — BIT student, AI engineer in progress, and software developer in Biratnagar, Nepal building practical AI-powered applications and modern web experiences.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
