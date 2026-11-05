@@ -1,0 +1,6 @@
+{
+  "name": "CINE+DAILY — Deadpool III Showcase",
+  "description": "Interactive editorial showcase and IMAX ticket booking experience for Marvel Studios' Deadpool III, directed by Shawn Levy.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

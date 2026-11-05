@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Antonio', 'Bebas Neue', 'Oswald', sans-serif;
+  --font-condensed: 'Oswald', 'Antonio', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  font-family: var(--font-sans);
+}
+
+.font-display-tall {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 0.84;
+}
+
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+@keyframes ribbon-marquee-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes ribbon-marquee-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-ribbon-left {
+  animation: ribbon-marquee-left 24s linear infinite;
+  will-change: transform;
+}
+
+.animate-ribbon-right {
+  animation: ribbon-marquee-right 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+  will-change: transform;
+}
+
+@media (pointer: fine) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-ribbon-left,
+  .animate-ribbon-right,
+  .animate-spin-slow {
+    animation: none !important;
+  }
+}
+
